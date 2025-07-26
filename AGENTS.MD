@@ -47,29 +47,18 @@ yarn install
 #### **Server**
 
 ```
-yarn workspace @your_spotify/server dev
+https://github.com/bruvv/your_spotify/blob/master/apps/server/scripts/run/run_dev.sh
 ```
 
-*(or run `npm run dev` inside `apps/server`)*
 This launches **nodemon** on the TypeScript entry point.
 
 #### **Client**
 
 ```
-yarn workspace @your_spotify/client start
+https://github.com/bruvv/your_spotify/blob/master/apps/client/scripts/run/run_dev.sh
 ```
 
 The React app will serve on **[http://localhost:3000](http://localhost:3000)**.
-
-#### **Full-Stack Environment**
-
-```
-docker-compose -f docker-compose-dev.yml up
-```
-
-This starts the **API**, **client**, and **MongoDB** instance.
-
----
 
 ### **Production Build**
 
@@ -77,34 +66,6 @@ This starts the **API**, **client**, and **MongoDB** instance.
 yarn workspace @your_spotify/server build
 yarn workspace @your_spotify/client build
 ```
-
----
-
-## **Testing & Linting**
-
-### **Testing**
-
-The client defines tests using `react-scripts`. Run:
-
-```
-yarn workspace @your_spotify/client test
-```
-
-### **Linting**
-
-```
-yarn workspace @your_spotify/server lint
-yarn workspace @your_spotify/client lint
-```
-
-### **Type Checking**
-
-```
-yarn workspace @your_spotify/client typecheck
-yarn workspace @your_spotify/server build
-```
-
-*(Server build invokes TypeScript compiler)*
 
 ---
 

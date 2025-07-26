@@ -35,6 +35,22 @@ then
     CSP_CONNECT_SRC="$CSP_CONNECT_SRC/"
 fi
 
+# Allow additional hosts specified in CORS for local access
+if [[ -n "$CORS" && "$CSP_CONNECT_SRC" != "*" ]]
+then
+    for host in ${CORS//,/ }
+    do
+        if [[ "$host" != "$API_ENDPOINT" ]]
+        then
+            if ! echo "$host" | grep -q "/$"
+            then
+                host="$host/"
+            fi
+            CSP_CONNECT_SRC="$CSP_CONNECT_SRC $host"
+        fi
+    done
+fi
+
 sed -i "s#connect-src \(.*\);#connect-src 'self' $CSP_CONNECT_SRC;#g" "$VAR_PATH/index.html"
 
 # Handling frame-ancestors preferences

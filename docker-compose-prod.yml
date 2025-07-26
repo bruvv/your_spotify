@@ -1,10 +1,10 @@
 services:
   app:
-    container_name: server
+    container_name: your_spotify
     restart: always
     build:
       context: .
-      dockerfile: Dockerfile.server.production
+      dockerfile: Dockerfile.full.production
       args:
         NODE_ENV: production
     links:
@@ -13,6 +13,7 @@ services:
       - mongo
     ports:
       - "8080:8080"
+      - "3000:3000"
     environment:
       LOG_LEVEL: debug
       API_ENDPOINT: http://localhost:8080 # This MUST be included as a valid URL in the spotify dashboard
@@ -27,17 +28,3 @@ services:
       - ./db_data:/data/db
     ports:
       - "27017:27017"
-
-  web:
-    container_name: web
-    restart: always
-    build:
-      context: .
-      dockerfile: Dockerfile.client.production
-      args:
-        NODE_ENV: production
-    ports:
-      - "3000:3000"
-    environment:
-      NODE_ENV: production
-      API_ENDPOINT: http://localhost:8080

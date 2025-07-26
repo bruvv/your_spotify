@@ -25,6 +25,8 @@ To run the application, use the following keys as environment variables:
 * **API**: `8080`
 * **Client**: `3000`
 
+* Use podman instead of docker for testing
+
 ---
 
 ### **Install Dependencies**

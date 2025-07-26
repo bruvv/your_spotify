@@ -89,7 +89,7 @@ You can follow the instructions [here](https://github.com/Yooooomi/your_spotify/
 | PROMETHEUS_USERNAME             | _not defined_ | Prometheus basic auth username (see [here](https://github.com/Yooooomi/your_spotify/tree/master/apps/server#prometheus)) |
 | PROMETHEUS_PASSWORD             | _not defined_ | Prometheus basic auth password |
 | LOG_LEVEL             | info | The log level, debug is useful if you encouter any bugs |
-| CORS                  | _not defined_ | List of comma-separated origin allowed (not required; defaults to CLIENT_ENDPOINT) |
+| CORS                  | _not defined_ | List of comma-separated origin allowed (not required; defaults to CLIENT_ENDPOINT). These origins will also be added to the frontend CSP `connect-src` directive |
 | COOKIE_VALIDITY_MS    | 1h | Validity time of the authentication cookie, following [this pattern](https://github.com/vercel/ms) |
 | MAX_IMPORT_CACHE_SIZE | Infinite | The maximum element in the cache when importing data from an outside source, more cache means less requests to Spotify, resulting in faster imports |
 | MONGO_NO_ADMIN_RIGHTS | false | Do not ask for admin right on the Mongo database |
@@ -102,7 +102,7 @@ You can follow the instructions [here](https://github.com/Yooooomi/your_spotify/
 99.9% of users do not need to worry about this, it is handled automatically.
 
 If your use case requires the backend to be used from multiple frontend origins, you can manually adjust the `CORS` variable.
-For example, a value of `origin1,origin2` will allow `origin1` and `origin2`.
+For example, a value of `origin1,origin2` will allow `origin1` and `origin2`. These origins are also added to the web client's `connect-src` policy so it can reach the API from any of them.
 
 # Creating the Spotify Application
 

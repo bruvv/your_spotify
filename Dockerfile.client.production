@@ -24,7 +24,7 @@ WORKDIR /app/apps/client
 RUN yarn build
 
 ARG NODE_ENV
-ENV NODE_ENV ${NODE_ENV:-production}
+ENV NODE_ENV=${NODE_ENV:-production}
 
 FROM node:20-alpine
 

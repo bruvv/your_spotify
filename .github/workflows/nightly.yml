@@ -12,6 +12,7 @@ on:
       - yarn.lock
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   build:

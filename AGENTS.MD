@@ -25,8 +25,8 @@ To run the application, use the following keys as environment variables:
 * **API**: `8080`
 * **Client**: `3000`
 
-* Use `apps/client/scripts/*` scripts to run and test the *client*
-* Use `apps/server/scripts/*` scripts to run and test the *server*
+* Use `/apps/client/scripts/*` scripts to run and test the *client*
+* Use `/apps/server/scripts/*` scripts to run and test the *server*
 
 ---
 

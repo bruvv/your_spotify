@@ -1,0 +1,29 @@
+FROM node:20-alpine AS base
+
+WORKDIR /app
+
+ENV MONGO_ENDPOINT=mongodb://mongo:27017/your_spotify
+
+RUN apk add python3 gcc g++ make cmake && npm install -g nodemon
+
+COPY yarn.lock package.json ./
+COPY apps/dev/package.json apps/dev/package.json
+COPY apps/dev/tsconfig.json apps/dev/tsconfig.json
+COPY apps/server/package.json apps/server/package.json
+COPY apps/server/tsconfig.json apps/server/tsconfig.json
+COPY apps/client/package.json apps/client/package.json
+COPY apps/client/tsconfig.json apps/client/tsconfig.json
+
+RUN yarn --frozen-lockfile
+
+COPY apps/server/src apps/server/src
+COPY apps/server/scripts apps/server/scripts
+COPY apps/client/public apps/client/public
+COPY apps/client/src apps/client/src
+COPY apps/client/scripts apps/client/scripts
+COPY full-entrypoint.sh /app/full-entrypoint.sh
+
+ARG NODE_ENV
+ENV NODE_ENV ${NODE_ENV:-development}
+
+ENTRYPOINT ["sh", "/app/full-entrypoint.sh"]

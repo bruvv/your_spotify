@@ -46,11 +46,14 @@ Follow the [docker-compose-example.yml](https://github.com/Yooooomi/your_spotify
 
 ```yml
 services:
-  server:
-    image: yooooomi/your_spotify_server
+  your_spotify:
+    build:
+      context: .
+      dockerfile: Dockerfile.full.production
     restart: always
     ports:
       - "8080:8080"
+      - "3000:3000"
     links:
       - mongo
     depends_on:
@@ -65,14 +68,6 @@ services:
     image: mongo:6
     volumes:
       - ./your_spotify_db:/data/db
-
-  web:
-    image: yooooomi/your_spotify_client
-    restart: always
-    ports:
-      - "3000:3000"
-    environment:
-      API_ENDPOINT: http://localhost:8080
 ```
 
 > Some ARM-based devices might have trouble with Mongo >= 5. I suggest you use the image **mongo:4.4**.

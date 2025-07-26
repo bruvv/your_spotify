@@ -25,7 +25,8 @@ To run the application, use the following keys as environment variables:
 * **API**: `8080`
 * **Client**: `3000`
 
-* Use podman instead of docker for testing
+* Use `apps/client/scripts/build` and `/apps/client/scripts/run/*` scripts to run and test the client
+* Use `apps/server/scripts/run/*` scripts to run and test the server
 
 ---
 
